@@ -128,64 +128,81 @@ function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* ===== HERO ===== */}
-      <header className="relative overflow-hidden bg-primary">
+      <header
+        className="relative flex min-h-[92vh] flex-col overflow-hidden bg-primary bg-cover bg-center"
+        style={{ backgroundImage: `url(${clinicHero})` }}
+      >
         <div
-          className="pointer-events-none absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url(${clinicHero})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "var(--gradient-hero)" }}
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/85 to-primary" />
 
-        <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-mint text-mint-foreground">
+        <nav className="relative mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-6">
+          <div className="flex min-w-0 items-center gap-3">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-primary-foreground/40 text-primary-foreground">
               <Stethoscope className="h-5 w-5" />
             </span>
             <div className="min-w-0 leading-tight">
-              <p className="truncate text-sm font-bold text-primary-foreground">Dr. Rafael Mamede</p>
-              <p className="text-xs font-medium text-primary-foreground/70">Endodontia • Assis-SP</p>
+              <p className="truncate text-base font-light tracking-wide text-primary-foreground">
+                Dr. <span className="font-semibold">Rafael Mamede</span>
+              </p>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70">
+                Endodontia
+              </p>
             </div>
           </div>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden shrink-0 items-center gap-2 rounded-xl bg-whatsapp px-4 py-2.5 text-sm font-bold text-whatsapp-foreground transition-transform hover:scale-105 sm:inline-flex"
-          >
-            <WhatsAppIcon className="h-4 w-4" />
-            Agendar
-          </a>
+          <div className="hidden items-center gap-8 lg:flex">
+            {[
+              ["Diferenciais", "#diferenciais"],
+              ["Serviços", "#servicos"],
+              ["Sobre", "#sobre"],
+              ["Avaliações", "#avaliacoes"],
+              ["Localização", "#localizacao"],
+            ].map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                className="text-xs uppercase tracking-[0.14em] text-primary-foreground/85 transition-colors hover:text-primary-foreground"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
         </nav>
 
-        <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-10 text-center sm:pb-24 sm:pt-16">
-          <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 backdrop-blur-sm">
+        <div className="relative mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center px-6 py-16 text-center">
+          <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-primary-foreground/30 bg-primary-foreground/10 px-4 py-2 backdrop-blur-sm">
             <Stars />
-            <span className="text-sm font-semibold text-primary-foreground">
+            <span className="text-xs font-medium tracking-wide text-primary-foreground">
               5.0 no Google • 17+ avaliações
             </span>
           </div>
 
-          <h1 className="mx-auto max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-primary-foreground sm:text-5xl sm:leading-[1.1]">
-            Tratamento de Canal Rápido, Seguro e{" "}
-            <span className="text-mint">Sem Dor</span> em Assis-SP
+          <h1 className="text-3xl font-light leading-tight tracking-tight text-primary-foreground sm:text-5xl sm:leading-[1.15]">
+            Tratamento de canal <span className="font-semibold">rápido, seguro e sem dor</span>{" "}
+            em Assis-SP
           </h1>
 
-          <p className="mx-auto mt-5 max-w-xl text-base font-medium text-primary-foreground/80 sm:text-lg">
+          <p className="mt-5 max-w-2xl text-base font-light text-primary-foreground/85 sm:text-lg">
             Especialista em Endodontia com atendimento humanizado, tecnologia de ponta e
             suporte 24h para urgências.
           </p>
 
-          <div className="mt-8 flex flex-col items-center gap-3">
-            <CtaButton pulse className="w-full sm:w-auto">
-              Falar com o Dr. Rafael no WhatsApp
+          <div className="mt-9 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row">
+            <CtaButton variant="ghost" className="w-full sm:w-auto">
+              Agendar
             </CtaButton>
-            <p className="flex items-center gap-1.5 text-xs font-medium text-primary-foreground/70">
-              <Clock className="h-3.5 w-3.5" /> Atendimento 24h • Plantão de Urgências
-            </p>
+            <a
+              href="#servicos"
+              className="inline-flex w-full items-center justify-center rounded-full border border-primary-foreground/70 px-8 py-4 text-sm font-medium uppercase tracking-[0.12em] text-primary-foreground transition-colors hover:bg-primary-foreground hover:text-primary sm:w-auto"
+            >
+              Saiba mais
+            </a>
           </div>
+
+          <p className="mt-7 flex items-center gap-2 text-xs font-light text-primary-foreground/75">
+            <Clock className="h-3.5 w-3.5" /> Atendimento 24h • Plantão de urgências todos os dias
+          </p>
         </div>
       </header>
 
