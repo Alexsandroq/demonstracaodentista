@@ -85,22 +85,31 @@ function CtaButton({
   children,
   className = "",
   pulse = false,
+  variant = "solid",
 }: {
   children: React.ReactNode;
   className?: string;
   pulse?: boolean;
+  variant?: "solid" | "ghost" | "outline";
 }) {
+  const styles: Record<string, string> = {
+    solid: "bg-whatsapp text-whatsapp-foreground shadow-lg",
+    ghost:
+      "bg-primary-foreground/15 text-primary-foreground backdrop-blur-sm border border-primary-foreground/40",
+    outline:
+      "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
+  };
   return (
     <a
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-3 rounded-2xl bg-whatsapp px-7 py-4 text-base font-bold text-whatsapp-foreground shadow-lg transition-transform hover:scale-[1.03] active:scale-[0.98] ${
-        pulse ? "animate-pulse-ring" : ""
-      } ${className}`}
+      className={`inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-[0.12em] transition-all hover:scale-[1.03] active:scale-[0.98] ${
+        styles[variant]
+      } ${pulse ? "animate-pulse-ring" : ""} ${className}`}
     >
-      <WhatsAppIcon className="h-6 w-6 shrink-0" />
       {children}
+      <WhatsAppIcon className="h-5 w-5 shrink-0" />
     </a>
   );
 }
