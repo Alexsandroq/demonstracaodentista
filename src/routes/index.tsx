@@ -214,7 +214,7 @@ function LandingPage() {
               <Activity className="h-7 w-7" />
             </span>
             <div className="min-w-0">
-              <h2 className="text-lg font-extrabold text-accent-foreground sm:text-xl">
+              <h2 className="text-lg font-light text-accent-foreground sm:text-xl">
                 Está com dor de dente agora?
               </h2>
               <p className="text-sm font-medium text-accent-foreground/80">
@@ -234,7 +234,7 @@ function LandingPage() {
           <p className="text-sm font-bold uppercase tracking-widest text-primary/60">
             Por que escolher o Dr. Rafael
           </p>
-          <h2 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 className="mt-2 text-2xl font-light tracking-tight sm:text-3xl">
             Cuidado que une tecnologia e tranquilidade
           </h2>
         </div>
@@ -259,7 +259,7 @@ function LandingPage() {
           ].map(({ icon: Icon, title, text }) => (
             <article
               key={title}
-              className="rounded-3xl border border-border bg-card p-7 shadow-sm transition-shadow hover:shadow-md"
+              className="rounded-2xl border border-border bg-card p-7 shadow-sm transition-shadow hover:shadow-md"
             >
               <span className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-primary">
                 <Icon className="h-6 w-6" />
@@ -276,7 +276,7 @@ function LandingPage() {
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <div className="text-center">
             <p className="text-sm font-bold uppercase tracking-widest text-primary/60">Serviços</p>
-            <h2 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+            <h2 className="mt-2 text-2xl font-light tracking-tight sm:text-3xl">
               Especialidades em Endodontia
             </h2>
           </div>
@@ -306,7 +306,7 @@ function LandingPage() {
             ].map(({ icon: Icon, title, text }) => (
               <article
                 key={title}
-                className="flex items-start gap-4 rounded-3xl border border-border bg-card p-6"
+                className="flex items-start gap-4 rounded-2xl border border-border bg-card p-6"
               >
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent text-accent-foreground">
                   <Icon className="h-5 w-5" />
@@ -343,7 +343,7 @@ function LandingPage() {
             <p className="text-sm font-bold uppercase tracking-widest text-primary/60">
               Sobre o especialista
             </p>
-            <h2 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+            <h2 className="mt-2 text-2xl font-light tracking-tight sm:text-3xl">
               Dr. Rafael Mamede
             </h2>
             <p className="mt-1 text-sm font-semibold text-muted-foreground">
@@ -374,7 +374,7 @@ function LandingPage() {
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <div className="text-center">
             <div className="mx-auto inline-flex items-center gap-3 rounded-2xl bg-primary-foreground/10 px-5 py-3">
-              <span className="text-3xl font-extrabold text-primary-foreground">5.0</span>
+              <span className="text-3xl font-light text-primary-foreground">5.0</span>
               <div className="text-left leading-tight">
                 <Stars />
                 <p className="text-xs font-semibold text-primary-foreground/80">
@@ -382,7 +382,7 @@ function LandingPage() {
                 </p>
               </div>
             </div>
-            <h2 className="mt-6 text-2xl font-extrabold tracking-tight text-primary-foreground sm:text-3xl">
+            <h2 className="mt-6 text-2xl font-light tracking-tight text-primary-foreground sm:text-3xl">
               Quem tratou, recomenda
             </h2>
           </div>
@@ -404,7 +404,7 @@ function LandingPage() {
             ].map(({ name, text }) => (
               <figure
                 key={name}
-                className="rounded-3xl bg-card p-6 shadow-lg"
+                className="rounded-2xl bg-card p-6 shadow-lg"
               >
                 <Stars />
                 <blockquote className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -428,13 +428,13 @@ function LandingPage() {
           <p className="text-sm font-bold uppercase tracking-widest text-primary/60">
             Localização
           </p>
-          <h2 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 className="mt-2 text-2xl font-light tracking-tight sm:text-3xl">
             Perto de você, em Assis-SP
           </h2>
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
-          <div className="flex flex-col justify-center gap-5 rounded-3xl border border-border bg-card p-7">
+          <div className="flex flex-col justify-center gap-5 rounded-2xl border border-border bg-card p-7">
             <div className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
               <div>
@@ -476,7 +476,7 @@ function LandingPage() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-border shadow-sm">
+          <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
             <iframe
               title="Mapa — Dr. Rafael Mamede, Av. Otto Ribeiro, 731, Assis-SP"
               src="https://www.google.com/maps?q=Av.+Otto+Ribeiro,+731+-+Jardim+Paulista,+Assis+-+SP&output=embed"
@@ -492,7 +492,7 @@ function LandingPage() {
       {/* ===== CTA FINAL / FOOTER ===== */}
       <footer className="bg-primary">
         <div className="mx-auto max-w-6xl px-5 py-14 text-center">
-          <h2 className="text-2xl font-extrabold tracking-tight text-primary-foreground sm:text-3xl">
+          <h2 className="text-2xl font-light tracking-tight text-primary-foreground sm:text-3xl">
             Não conviva com a dor. Resolva hoje.
           </h2>
           <p className="mx-auto mt-3 max-w-md text-sm font-medium text-primary-foreground/75">
