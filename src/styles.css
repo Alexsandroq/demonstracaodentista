@@ -127,3 +127,7 @@
     transform: translateY(-8px);
   }
 }
+
+#lovable-badge {
+display: none !important;
+}
