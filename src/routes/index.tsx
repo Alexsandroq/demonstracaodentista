@@ -229,7 +229,7 @@ function LandingPage() {
       </section>
 
       {/* ===== DIFERENCIAIS ===== */}
-      <section className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+      <section id="diferenciais" className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
         <div className="text-center">
           <p className="text-sm font-bold uppercase tracking-widest text-primary/60">
             Por que escolher o Dr. Rafael
@@ -272,7 +272,7 @@ function LandingPage() {
       </section>
 
       {/* ===== SERVIÇOS ===== */}
-      <section className="bg-muted">
+      <section id="servicos" className="bg-muted">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <div className="text-center">
             <p className="text-sm font-bold uppercase tracking-widest text-primary/60">Serviços</p>
@@ -326,7 +326,7 @@ function LandingPage() {
       </section>
 
       {/* ===== SOBRE ===== */}
-      <section className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+      <section id="sobre" className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
         <div className="grid items-center gap-10 sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
           <div className="relative mx-auto w-full max-w-sm">
             <div className="absolute -inset-3 rounded-[2rem] bg-accent" aria-hidden="true" />
@@ -370,11 +370,11 @@ function LandingPage() {
       </section>
 
       {/* ===== PROVA SOCIAL ===== */}
-      <section className="bg-primary">
+      <section id="avaliacoes" className="bg-primary">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <div className="text-center">
             <div className="mx-auto inline-flex items-center gap-3 rounded-2xl bg-primary-foreground/10 px-5 py-3">
-              <span className="text-3xl font-light text-primary-foreground">5.0</span>
+              <span className="text-4xl font-semibold text-primary-foreground">5.0</span>
               <div className="text-left leading-tight">
                 <Stars />
                 <p className="text-xs font-semibold text-primary-foreground/80">
@@ -423,7 +423,7 @@ function LandingPage() {
       </section>
 
       {/* ===== LOCALIZAÇÃO ===== */}
-      <section className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+      <section id="localizacao" className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
         <div className="text-center">
           <p className="text-sm font-bold uppercase tracking-widest text-primary/60">
             Localização
