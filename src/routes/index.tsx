@@ -85,22 +85,31 @@ function CtaButton({
   children,
   className = "",
   pulse = false,
+  variant = "solid",
 }: {
   children: React.ReactNode;
   className?: string;
   pulse?: boolean;
+  variant?: "solid" | "ghost" | "outline";
 }) {
+  const styles: Record<string, string> = {
+    solid: "bg-whatsapp text-whatsapp-foreground shadow-lg",
+    ghost:
+      "bg-primary-foreground/15 text-primary-foreground backdrop-blur-sm border border-primary-foreground/40",
+    outline:
+      "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
+  };
   return (
     <a
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-3 rounded-2xl bg-whatsapp px-7 py-4 text-base font-bold text-whatsapp-foreground shadow-lg transition-transform hover:scale-[1.03] active:scale-[0.98] ${
-        pulse ? "animate-pulse-ring" : ""
-      } ${className}`}
+      className={`inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-[0.12em] transition-all hover:scale-[1.03] active:scale-[0.98] ${
+        styles[variant]
+      } ${pulse ? "animate-pulse-ring" : ""} ${className}`}
     >
-      <WhatsAppIcon className="h-6 w-6 shrink-0" />
       {children}
+      <WhatsAppIcon className="h-5 w-5 shrink-0" />
     </a>
   );
 }
@@ -119,64 +128,81 @@ function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* ===== HERO ===== */}
-      <header className="relative overflow-hidden bg-primary">
+      <header
+        className="relative flex min-h-[92vh] flex-col overflow-hidden bg-primary bg-cover bg-center"
+        style={{ backgroundImage: `url(${clinicHero})` }}
+      >
         <div
-          className="pointer-events-none absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url(${clinicHero})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "var(--gradient-hero)" }}
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/85 to-primary" />
 
-        <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-mint text-mint-foreground">
+        <nav className="relative mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-6">
+          <div className="flex min-w-0 items-center gap-3">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-primary-foreground/40 text-primary-foreground">
               <Stethoscope className="h-5 w-5" />
             </span>
             <div className="min-w-0 leading-tight">
-              <p className="truncate text-sm font-bold text-primary-foreground">Dr. Rafael Mamede</p>
-              <p className="text-xs font-medium text-primary-foreground/70">Endodontia • Assis-SP</p>
+              <p className="truncate text-base font-light tracking-wide text-primary-foreground">
+                Dr. <span className="font-semibold">Rafael Mamede</span>
+              </p>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70">
+                Endodontia
+              </p>
             </div>
           </div>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden shrink-0 items-center gap-2 rounded-xl bg-whatsapp px-4 py-2.5 text-sm font-bold text-whatsapp-foreground transition-transform hover:scale-105 sm:inline-flex"
-          >
-            <WhatsAppIcon className="h-4 w-4" />
-            Agendar
-          </a>
+          <div className="hidden items-center gap-8 lg:flex">
+            {[
+              ["Diferenciais", "#diferenciais"],
+              ["Serviços", "#servicos"],
+              ["Sobre", "#sobre"],
+              ["Avaliações", "#avaliacoes"],
+              ["Localização", "#localizacao"],
+            ].map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                className="text-xs uppercase tracking-[0.14em] text-primary-foreground/85 transition-colors hover:text-primary-foreground"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
         </nav>
 
-        <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-10 text-center sm:pb-24 sm:pt-16">
-          <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 backdrop-blur-sm">
+        <div className="relative mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center px-6 py-16 text-center">
+          <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-primary-foreground/30 bg-primary-foreground/10 px-4 py-2 backdrop-blur-sm">
             <Stars />
-            <span className="text-sm font-semibold text-primary-foreground">
+            <span className="text-xs font-medium tracking-wide text-primary-foreground">
               5.0 no Google • 17+ avaliações
             </span>
           </div>
 
-          <h1 className="mx-auto max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-primary-foreground sm:text-5xl sm:leading-[1.1]">
-            Tratamento de Canal Rápido, Seguro e{" "}
-            <span className="text-mint">Sem Dor</span> em Assis-SP
+          <h1 className="text-3xl font-light leading-tight tracking-tight text-primary-foreground sm:text-5xl sm:leading-[1.15]">
+            Tratamento de canal <span className="font-semibold">rápido, seguro e sem dor</span>{" "}
+            em Assis-SP
           </h1>
 
-          <p className="mx-auto mt-5 max-w-xl text-base font-medium text-primary-foreground/80 sm:text-lg">
+          <p className="mt-5 max-w-2xl text-base font-light text-primary-foreground/85 sm:text-lg">
             Especialista em Endodontia com atendimento humanizado, tecnologia de ponta e
             suporte 24h para urgências.
           </p>
 
-          <div className="mt-8 flex flex-col items-center gap-3">
-            <CtaButton pulse className="w-full sm:w-auto">
-              Falar com o Dr. Rafael no WhatsApp
+          <div className="mt-9 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row">
+            <CtaButton variant="ghost" className="w-full sm:w-auto">
+              Agendar
             </CtaButton>
-            <p className="flex items-center gap-1.5 text-xs font-medium text-primary-foreground/70">
-              <Clock className="h-3.5 w-3.5" /> Atendimento 24h • Plantão de Urgências
-            </p>
+            <a
+              href="#servicos"
+              className="inline-flex w-full items-center justify-center rounded-full border border-primary-foreground/70 px-8 py-4 text-sm font-medium uppercase tracking-[0.12em] text-primary-foreground transition-colors hover:bg-primary-foreground hover:text-primary sm:w-auto"
+            >
+              Saiba mais
+            </a>
           </div>
+
+          <p className="mt-7 flex items-center gap-2 text-xs font-light text-primary-foreground/75">
+            <Clock className="h-3.5 w-3.5" /> Atendimento 24h • Plantão de urgências todos os dias
+          </p>
         </div>
       </header>
 
@@ -188,7 +214,7 @@ function LandingPage() {
               <Activity className="h-7 w-7" />
             </span>
             <div className="min-w-0">
-              <h2 className="text-lg font-extrabold text-accent-foreground sm:text-xl">
+              <h2 className="text-lg font-light text-accent-foreground sm:text-xl">
                 Está com dor de dente agora?
               </h2>
               <p className="text-sm font-medium text-accent-foreground/80">
@@ -203,12 +229,12 @@ function LandingPage() {
       </section>
 
       {/* ===== DIFERENCIAIS ===== */}
-      <section className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+      <section id="diferenciais" className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
         <div className="text-center">
           <p className="text-sm font-bold uppercase tracking-widest text-primary/60">
             Por que escolher o Dr. Rafael
           </p>
-          <h2 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 className="mt-2 text-2xl font-light tracking-tight sm:text-3xl">
             Cuidado que une tecnologia e tranquilidade
           </h2>
         </div>
@@ -233,7 +259,7 @@ function LandingPage() {
           ].map(({ icon: Icon, title, text }) => (
             <article
               key={title}
-              className="rounded-3xl border border-border bg-card p-7 shadow-sm transition-shadow hover:shadow-md"
+              className="rounded-2xl border border-border bg-card p-7 shadow-sm transition-shadow hover:shadow-md"
             >
               <span className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-primary">
                 <Icon className="h-6 w-6" />
@@ -246,11 +272,11 @@ function LandingPage() {
       </section>
 
       {/* ===== SERVIÇOS ===== */}
-      <section className="bg-muted">
+      <section id="servicos" className="bg-muted">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <div className="text-center">
             <p className="text-sm font-bold uppercase tracking-widest text-primary/60">Serviços</p>
-            <h2 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+            <h2 className="mt-2 text-2xl font-light tracking-tight sm:text-3xl">
               Especialidades em Endodontia
             </h2>
           </div>
@@ -280,7 +306,7 @@ function LandingPage() {
             ].map(({ icon: Icon, title, text }) => (
               <article
                 key={title}
-                className="flex items-start gap-4 rounded-3xl border border-border bg-card p-6"
+                className="flex items-start gap-4 rounded-2xl border border-border bg-card p-6"
               >
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent text-accent-foreground">
                   <Icon className="h-5 w-5" />
@@ -300,7 +326,7 @@ function LandingPage() {
       </section>
 
       {/* ===== SOBRE ===== */}
-      <section className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+      <section id="sobre" className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
         <div className="grid items-center gap-10 sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
           <div className="relative mx-auto w-full max-w-sm">
             <div className="absolute -inset-3 rounded-[2rem] bg-accent" aria-hidden="true" />
@@ -317,7 +343,7 @@ function LandingPage() {
             <p className="text-sm font-bold uppercase tracking-widest text-primary/60">
               Sobre o especialista
             </p>
-            <h2 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+            <h2 className="mt-2 text-2xl font-light tracking-tight sm:text-3xl">
               Dr. Rafael Mamede
             </h2>
             <p className="mt-1 text-sm font-semibold text-muted-foreground">
@@ -344,11 +370,11 @@ function LandingPage() {
       </section>
 
       {/* ===== PROVA SOCIAL ===== */}
-      <section className="bg-primary">
+      <section id="avaliacoes" className="bg-primary">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <div className="text-center">
             <div className="mx-auto inline-flex items-center gap-3 rounded-2xl bg-primary-foreground/10 px-5 py-3">
-              <span className="text-3xl font-extrabold text-primary-foreground">5.0</span>
+              <span className="text-4xl font-semibold text-primary-foreground">5.0</span>
               <div className="text-left leading-tight">
                 <Stars />
                 <p className="text-xs font-semibold text-primary-foreground/80">
@@ -356,7 +382,7 @@ function LandingPage() {
                 </p>
               </div>
             </div>
-            <h2 className="mt-6 text-2xl font-extrabold tracking-tight text-primary-foreground sm:text-3xl">
+            <h2 className="mt-6 text-2xl font-light tracking-tight text-primary-foreground sm:text-3xl">
               Quem tratou, recomenda
             </h2>
           </div>
@@ -378,7 +404,7 @@ function LandingPage() {
             ].map(({ name, text }) => (
               <figure
                 key={name}
-                className="rounded-3xl bg-card p-6 shadow-lg"
+                className="rounded-2xl bg-card p-6 shadow-lg"
               >
                 <Stars />
                 <blockquote className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -397,18 +423,18 @@ function LandingPage() {
       </section>
 
       {/* ===== LOCALIZAÇÃO ===== */}
-      <section className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+      <section id="localizacao" className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
         <div className="text-center">
           <p className="text-sm font-bold uppercase tracking-widest text-primary/60">
             Localização
           </p>
-          <h2 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h2 className="mt-2 text-2xl font-light tracking-tight sm:text-3xl">
             Perto de você, em Assis-SP
           </h2>
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
-          <div className="flex flex-col justify-center gap-5 rounded-3xl border border-border bg-card p-7">
+          <div className="flex flex-col justify-center gap-5 rounded-2xl border border-border bg-card p-7">
             <div className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
               <div>
@@ -450,7 +476,7 @@ function LandingPage() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-border shadow-sm">
+          <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
             <iframe
               title="Mapa — Dr. Rafael Mamede, Av. Otto Ribeiro, 731, Assis-SP"
               src="https://www.google.com/maps?q=Av.+Otto+Ribeiro,+731+-+Jardim+Paulista,+Assis+-+SP&output=embed"
@@ -466,7 +492,7 @@ function LandingPage() {
       {/* ===== CTA FINAL / FOOTER ===== */}
       <footer className="bg-primary">
         <div className="mx-auto max-w-6xl px-5 py-14 text-center">
-          <h2 className="text-2xl font-extrabold tracking-tight text-primary-foreground sm:text-3xl">
+          <h2 className="text-2xl font-light tracking-tight text-primary-foreground sm:text-3xl">
             Não conviva com a dor. Resolva hoje.
           </h2>
           <p className="mx-auto mt-3 max-w-md text-sm font-medium text-primary-foreground/75">
